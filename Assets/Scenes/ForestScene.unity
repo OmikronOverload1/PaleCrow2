@@ -147,8 +147,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.3207547, g: 0.040850837, b: 0.040850837, a: 1}
-  m_Intensity: 0.5
+  m_Color: {r: 0.31132078, g: 0, b: 0, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -192,7 +192,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 1900
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.44761336, y: -0.35106742, z: 0.064050145, w: 0.8199339}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 51.169, y: -55.762, z: -19.495}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +376,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5062531818710565041, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062531818710565041, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062531818710565041, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062531818710565041, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -417,7 +429,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5062531818710565041, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5291089803724538621, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
+      propertyPath: radius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5291089803724538621, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
+      propertyPath: LevelSize
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5291089803724538621, guid: a0063b1ad2c935b4591b833db7df0353, type: 3}
       propertyPath: ravenTree

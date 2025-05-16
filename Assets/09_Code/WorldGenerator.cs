@@ -6,18 +6,16 @@ public class WorldGenerator : MonoBehaviour
     public static List<GameObject> GeneratedTiles = new List<GameObject>();
     private List<GameObject> treeInstances = new List<GameObject>(); // Track all instantiated trees
 
+    [SerializeField] private int LevelSize = 50; // LevelSize of the world
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private GameObject pathTilePrefab; // Prefab for Path tiles
     [SerializeField] private GameObject playerPrefab;   // Prefab for the player
     [SerializeField] private GameObject housePrefab;   // Prefab for the house
-    [SerializeField] private GameObject boundingBoxPrefab; // Prefab for the bounding box
     [SerializeField] private GameObject[] treePrefabs;  // Array of tree prefabs
     [SerializeField] private GameObject playerInstance; // Track the instantiated player
     [SerializeField] private GameObject letter; // Prefabs for the letters
     [SerializeField] private GameObject ravenTree; // Prefabs for the raven tree
     [SerializeField] private GameObject deadFlowerPrefab; // Prefab for the flower
-
-    private int radius = 50;
 
     private void Start()
     {
@@ -26,11 +24,11 @@ public class WorldGenerator : MonoBehaviour
 
     public void GenerateWorld()
     {
-        Path pathGenerator = new Path(radius);
+        Path pathGenerator = new Path(LevelSize);
 
-        for (int x = 0; x < radius; x++)
+        for (int x = 0; x < LevelSize; x++)
         {
-            for (int z = 0; z < radius; z++)
+            for (int z = 0; z < LevelSize; z++)
             {
                 GameObject tile = Instantiate(tilePrefab,
                     new Vector3(x * 10f, 0, z * 10f), Quaternion.identity);
@@ -55,8 +53,6 @@ public class WorldGenerator : MonoBehaviour
         // Add a house on the last tile
         AddHouseOnLastTile(pathGenerator);
 
-        // Add bounding box tiles around the path
-        AddBoundingBox(pathGenerator);
     }
 
     private void ReplaceWithPathTile(GameObject originalTile)
@@ -153,38 +149,5 @@ public class WorldGenerator : MonoBehaviour
         GameObject lastTile = pathGenerator.GetPath()[pathGenerator.GetPath().Count - 1];
         Vector3 housePosition = lastTile.transform.position;
         Instantiate(housePrefab, housePosition, Quaternion.identity);
-    }
-
-    private void AddBoundingBox(Path pathGenerator)
-    {
-        HashSet<Vector3> pathTilePositions = new HashSet<Vector3>();
-        foreach (var pathTile in pathGenerator.GetPath())
-        {
-            pathTilePositions.Add(pathTile.transform.position);
-        }
-
-        HashSet<Vector3> boundingBoxPositions = new HashSet<Vector3>();
-
-        foreach (var pathTile in pathGenerator.GetPath())
-        {
-            Vector3 pathTilePosition = pathTile.transform.position;
-
-            // Check adjacent positions (up, down, left, right)
-            AddBoundingBoxTileAtPosition(pathTilePosition + new Vector3(10f, 0, 0), boundingBoxPositions, pathTilePositions); // Right
-            AddBoundingBoxTileAtPosition(pathTilePosition + new Vector3(-10f, 0, 0), boundingBoxPositions, pathTilePositions); // Left
-            AddBoundingBoxTileAtPosition(pathTilePosition + new Vector3(0, 0, 10f), boundingBoxPositions, pathTilePositions); // Up
-            AddBoundingBoxTileAtPosition(pathTilePosition + new Vector3(0, 0, -10f), boundingBoxPositions, pathTilePositions); // Down
-        }
-    }
-
-    private void AddBoundingBoxTileAtPosition(Vector3 position, HashSet<Vector3> boundingBoxPositions, HashSet<Vector3> pathTilePositions)
-    {
-        // Check if the position is already occupied by a bounding box or is a path tile
-        if (boundingBoxPositions.Contains(position) || pathTilePositions.Contains(position))
-            return;
-
-        // Instantiate a bounding box tile at the position
-        Instantiate(boundingBoxPrefab, position + new Vector3(0, 1, 0), Quaternion.identity);
-        boundingBoxPositions.Add(position);
     }
 }
